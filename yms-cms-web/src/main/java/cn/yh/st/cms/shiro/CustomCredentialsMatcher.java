@@ -22,7 +22,7 @@ public class CustomCredentialsMatcher extends SimpleCredentialsMatcher {
 		Object accountCredentials = getCredentials(info);
 		try {
 			String password = String.valueOf(token.getPassword());
-			return equals(MD5.md5Encode(PWD_PRFIX + password), accountCredentials);
+			return equals(MD5.md5Encode(PWD_PRFIX + password+PWD_PRFIX), accountCredentials);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

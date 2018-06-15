@@ -1,6 +1,5 @@
 package cn.yh.st.base;
 
-import cn.yh.st.common.entity.Entity;
 
 public interface BaseService<T extends Entity> {
 

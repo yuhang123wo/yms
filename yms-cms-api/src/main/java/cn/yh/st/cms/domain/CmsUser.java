@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 
-import cn.yh.st.common.entity.Entity;
+import cn.yh.st.base.Entity;
 
 /**
  * @类说明：
@@ -42,8 +42,9 @@ public class CmsUser extends Entity {
 	@Column(name = "create_time")
 	private Date createTime;
 
-	
-	
+	public CmsUser() {
+	}
+
 	public CmsUser(String username) {
 		this.username = username;
 	}

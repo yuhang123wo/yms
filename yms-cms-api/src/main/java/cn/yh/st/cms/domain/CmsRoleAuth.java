@@ -2,7 +2,7 @@ package cn.yh.st.cms.domain;
 
 import javax.persistence.Column;
 
-import cn.yh.st.common.entity.Entity;
+import cn.yh.st.base.Entity;
 
 /**
  * @类说明：

@@ -1,4 +1,8 @@
-package cn.yh.st.common.entity;
+package cn.yh.st.base;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -9,6 +13,8 @@ public class Entity implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -5144294465034976992L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	public Long getId() {

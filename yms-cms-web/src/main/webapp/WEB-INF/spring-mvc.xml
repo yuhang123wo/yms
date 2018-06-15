@@ -6,13 +6,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd"
 	default-autowire="byName" default-lazy-init="false">
 
-	<mvc:annotation-driven validator="validator" />
-
-	<!-- 以下 validator ConversionService 在使用 mvc:annotation-driven 会 自动注册 -->
-	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
-	</bean>
-
 	<!-- 文件上传 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="4000000" />
@@ -20,8 +13,7 @@
 	</bean>
 
 	<!-- 自动扫描且只扫描@Controller -->
-	<context:component-scan base-package="cn。yh.st.cms.webr"
-		use-default-filters="false">
+	<context:component-scan base-package="cn.yh.st.cms.web" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 		<context:include-filter type="annotation"
 			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
@@ -48,17 +40,6 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-
-	<!-- tiles定义 -->
-	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
-
-	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-		<property name="definitions">
-			<list>
-				<value>/WEB-INF/base.xml</value>
-			</list>
-		</property>
-	</bean>
 
 	<!-- 定义JSP文件的位置 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

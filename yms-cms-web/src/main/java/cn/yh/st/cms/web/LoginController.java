@@ -49,10 +49,13 @@ public class LoginController {
 				return LOGIN_SUCCESS_URL;
 			} catch (UserNotExistException e) {
 				model.addAttribute(PARAMS_TAG, "用户不存在");
+				e.printStackTrace();
 			} catch (AuthenticationException e) {
 				model.addAttribute(PARAMS_TAG, "用户名密码错误");
+				e.printStackTrace();
 			} catch (Exception e) {
 				model.addAttribute(PARAMS_TAG, "系统异常稍后再试");
+				e.printStackTrace();
 			}
 			return LOGIN_FAIL_URL;
 

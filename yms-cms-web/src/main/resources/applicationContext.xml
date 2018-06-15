@@ -6,6 +6,7 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd
         ">
-	<import resource="applicationContext-shiro.xml"></import>
 	<import resource="consumer.xml"></import>
+	<import resource="applicationContext-shiro.xml"></import>
+
 </beans>

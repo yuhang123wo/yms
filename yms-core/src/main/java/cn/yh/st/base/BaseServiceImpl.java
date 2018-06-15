@@ -1,6 +1,5 @@
 package cn.yh.st.base;
 
-import cn.yh.st.common.entity.Entity;
 import cn.yh.st.common.util.ReflectionHelper;
 
 import com.github.abel533.mapper.Mapper;
