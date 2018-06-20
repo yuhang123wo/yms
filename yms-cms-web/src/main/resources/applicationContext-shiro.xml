@@ -40,7 +40,7 @@
 				/captcha=anon
 				/test/** =anon
 				/assets/** =anon
-				/** = user
+				/** = authc
 			</value>
 		</property>
 	</bean>
