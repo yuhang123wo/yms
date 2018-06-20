@@ -41,10 +41,25 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
-	<!-- 定义JSP文件的位置 -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
+	<bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+		<property name="prefix" value="/WEB-INF/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+		<property name="cacheable" value="false" />
+	</bean>
+	
+	<!-- layout 布局需要 -->
+	<bean id="layoutDialect" class="nz.net.ultraq.thymeleaf.LayoutDialect" />
+	
+	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+		<property name="additionalDialects" ref="layoutDialect"></property>
+	</bean>
+
+	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="templateEngine" />
+		<!--解决中文乱码 -->
+		<property name="characterEncoding" value="UTF-8" />
 	</bean>
 
 	<!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
@@ -52,5 +67,6 @@
 
 	<!-- 异常统一处理 -->
 	<!-- <bean id="exceptionResolver" class="com.yu.hang.core.exception.ExceptionHandler" /> -->
-
+	<!-- 定义无需Controller的url<->view直接映射 -->
+	<mvc:view-controller path="/" view-name="redirect:/login" />
 </beans>

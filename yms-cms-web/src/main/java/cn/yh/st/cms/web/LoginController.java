@@ -8,6 +8,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.yh.st.cms.exception.UserNotExistException;
@@ -31,16 +32,16 @@ public class LoginController {
 	public String login(HttpServletRequest request, Model model) {
 		String username = ServletRequestUtils.getStringParameter(request, "username", "");
 		String password = ServletRequestUtils.getStringParameter(request, "password", "");
-		if (StringUtil.isEmpty(username)) {
-			model.addAttribute(PARAMS_TAG, "用户名不能为空");
-			return LOGIN_FAIL_URL;
-		}
-		if (StringUtil.isEmpty(password)) {
-			model.addAttribute(PARAMS_TAG, "密码不能为空");
-			return LOGIN_FAIL_URL;
-		}
 		Subject subject = SecurityUtils.getSubject();
 		if (!subject.isAuthenticated()) {
+			if (StringUtil.isEmpty(username)) {
+				model.addAttribute(PARAMS_TAG, "用户名不能为空");
+				return LOGIN_FAIL_URL;
+			}
+			if (StringUtil.isEmpty(password)) {
+				model.addAttribute(PARAMS_TAG, "密码不能为空");
+				return LOGIN_FAIL_URL;
+			}
 			try {
 				UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken(username,
 						password.toCharArray(), "");
@@ -60,6 +61,11 @@ public class LoginController {
 			return LOGIN_FAIL_URL;
 
 		}
+		return LOGIN_SUCCESS_URL;
+	}
+
+	@GetMapping("index")
+	public String index() {
 		return LOGIN_SUCCESS_URL;
 	}
 }

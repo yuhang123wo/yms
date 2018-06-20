@@ -11,7 +11,7 @@
   <properties>
 		<commons.lang.version>2.5</commons.lang.version>
 		<http.client.version>4.4.1</http.client.version>
-		<jackson.version>2.4.1</jackson.version>
+		<jackson.version>2.9.0</jackson.version>
 	</properties>
 	<dependencies>
 		<dependency>
