@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="cn.yh.st.cms.dao.CmsUserDao">
+	<sql id="whereCmsUser">
+	<where>
+		<if test="endTime!=null">
+	        	<![CDATA[
+	        		and create_time<=#{endTime}
+	        	]]>
+		</if>
+		<if test="startTime!=null">
+	        	<![CDATA[
+	        		and create_time>=#{startTime}
+	        	]]>
+		</if>
+	</where>
+</sql>
+	<select id="listCmsUserByParams" resultType="cn.yh.st.cms.domain.CmsUser">
+		select * from cms_user
+		<include refid="whereCmsUser" />
+	</select>
+</mapper>

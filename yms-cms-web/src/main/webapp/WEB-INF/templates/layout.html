@@ -14,6 +14,19 @@
 	<!-- fonts -->
 	<!-- ace styles -->
 	<link rel="stylesheet" th:href="@{/assets/css/ace.min.css}" />
+		<!--[if IE]>
+           <script th:src="@{/assets/js/jquery-1.10.2.min.js}"></script>
+        <![endif]-->
+
+		<!--[if !IE]> -->
+		<script th:src="@{/assets/js/jquery-2.0.3.min.js}"></script>
+		<!-- <![endif]-->
+		
+		<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+		
+			<!--[if !IE]> -->
+		<script th:src="@{/assets/js/jquery.min.js}"></script>
+		<!-- <![endif]-->
 </head>
 
 <body>
@@ -38,11 +51,13 @@
 			class="icon-double-angle-up icon-only bigger-110"></i>
 		</a>
 	</div>
-	<!-- /.main-container -->
-	<div style="text-align: center;">
+	
+	
+	   <!-- /.main-container -->
+	   <div style="text-align: center;">
 		<p>
 			来源：<a href="http://www.mycodes.net/" target="_blank">www.yuhang.com</a>
 		</p>
-	</div>
+	 </div>
 </body>
 </html>

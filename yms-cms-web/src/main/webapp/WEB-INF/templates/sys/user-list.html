@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" data-layout-decorator="layout">
 <body>
-	<div class="breadcrumbs" id="breadcrumbs" data-layout-fragment="content">
-		ccccccccccccccccccccccccccccccccczggggg
+	<div class="breadcrumbs" id="breadcrumbs"
+		data-layout-fragment="content">
+		<script type="text/javascript">
+		$(function(){
+			abc();
+		});
 		
-</div>
-	<!-- /.page-content -->
+		function  abc(){	
+		$.ajax({
+				type : "POST",
+				url : '/sys/userDataList',
+				data : {},
+				dataType : 'json',
+				success : function(data) {
+				}
+			});}
+		</script>
+	</div>
 </body>
 </html>
