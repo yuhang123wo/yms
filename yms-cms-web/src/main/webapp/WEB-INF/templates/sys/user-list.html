@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" data-layout-decorator="layout">
 <body>
-	<div class="breadcrumbs" id="breadcrumbs"
-		data-layout-fragment="content">
-		<script type="text/javascript">
+	<div class="breadcrumbs" id="breadcrumbs" data-layout-fragment="content">
+		<script th:inline="javascript">
 		$(function(){
 			abc();
 		});

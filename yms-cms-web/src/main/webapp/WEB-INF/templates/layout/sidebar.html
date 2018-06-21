@@ -11,38 +11,25 @@
 		</div>
 		<!-- #sidebar-shortcuts -->
 
-		<ul class="nav nav-list">
+		 <ul class="nav nav-list" id="menuList">
 			<li class="active"><a href="/index"> <i
 					class="icon-dashboard"></i> <span class="menu-text"> 首页 </span>
 			</a></li>
-
+             
 			<li><a href="/sys/userIndex"> <i class="icon-text-width"></i>
 					<span class="menu-text"> 系统管理 </span>
 			</a></li>
 		</ul>
 		<!-- /.nav-list -->
-	</div>
-	
-	<!-- basic scripts -->
-
-		<!--[if !IE]> -->
-		<script src="assets/js/jquery.min.js"></script>
-		<!-- <![endif]-->
-		<!--[if IE]>
-		  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <![endif]-->
-
-		<!--[if !IE]> -->
+		
 		<script type="text/javascript">
-		  <script src="assets/js/jquery-2.0.3.min.js"></script>
+              $(function liOnclik(){
+            	  $.session.set('key', 'value');
+            	  $('#menuList').on('click','li',function(){
+            		    $(this).addClass("active");
+            		})
+              }) 		  
 		</script>
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-		 <script src="assets/js/jquery-1.10.2.min.js"></script>
-       <![endif]-->
-		<script src="assets/js/bootstrap.min.js"></script>
-		<!-- page specific plugin scripts -->
-		<script src="assets/js/ace.min.js"></script>
+	</div>
 </body>
 </html>
