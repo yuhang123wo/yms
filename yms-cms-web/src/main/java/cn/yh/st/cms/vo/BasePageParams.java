@@ -19,8 +19,8 @@ public class BasePageParams {
 
 	public Integer getPageSize() {
 		if (pageSize == null || pageSize.intValue() <= 0) {
-			this.pageSize = 20;
-			return 20;
+			this.pageSize = 10;
+			return 10;
 		}
 		return pageSize;
 	}

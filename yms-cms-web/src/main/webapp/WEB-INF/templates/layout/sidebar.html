@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-	<div class="sidebar" id="sidebar" th:fragment="sidebar">
-		<div class="sidebar-shortcuts" id="sidebar-shortcuts">
-			<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-				<span class="btn btn-success"></span> <span class="btn btn-info"></span>
-
-				<span class="btn btn-warning"></span> <span class="btn btn-danger"></span>
-			</div>
-		</div>
-		<!-- #sidebar-shortcuts -->
-
-		 <ul class="nav nav-list" id="menuList">
-			<li class="active"><a href="/index"> <i
-					class="icon-dashboard"></i> <span class="menu-text"> 首页 </span>
+	<!-- #section:basics/sidebar -->
+	<div id="sidebar" class="sidebar responsive" th:fragment="sidebar">
+		<ul class="nav nav-list">
+			<li id="0"><a href="/index"> <i class="icon-dashboard"></i>
+					<span class="menu-text"> 首页 </span>
 			</a></li>
-             
-			<li><a href="/sys/userIndex"> <i class="icon-text-width"></i>
-					<span class="menu-text"> 系统管理 </span>
-			</a></li>
+			<li id="1">
+			   <a href="#" class="dropdown-toggle"> <i
+					class="menu-icon fa fa-desktop"></i> <span class="menu-text">系统设置
+				</span> <b class="arrow fa fa-angle-down"></b>
+			  </a> 
+			  <b class="arrow"></b>
+				<ul class="submenu">
+
+					<li class="" id="11"><a href="/sys/userIndex"> <i
+							class="menu-icon fa fa-caret-right"></i> 用户管理
+					</a> <b class="arrow"></b></li>
+
+					<li class="" id="12"><a href="/sys/roleListView"> <i
+							class="menu-icon fa fa-caret-right"></i> 角色管理
+					</a> <b class="arrow"></b></li>
+				</ul> </a></li>
+
 		</ul>
 		<!-- /.nav-list -->
-		
-		<script type="text/javascript">
-              $(function liOnclik(){
-            	  $.session.set('key', 'value');
-            	  $('#menuList').on('click','li',function(){
-            		    $(this).addClass("active");
-            		})
-              }) 		  
-		</script>
+
+		<!-- #section:basics/sidebar.layout.minimize -->
+		<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+		</div>
+
 	</div>
 </body>
 </html>
