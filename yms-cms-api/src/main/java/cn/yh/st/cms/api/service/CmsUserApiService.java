@@ -15,5 +15,6 @@ public interface CmsUserApiService {
 	CmsUser getCmsUserById(long userId);
 	
 	int updateUserInfo(CmsUser cmsUser);
+	
 
 }

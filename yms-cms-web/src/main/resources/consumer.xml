@@ -13,4 +13,8 @@
 	<!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
 	<dubbo:reference id="cmsUserApiService" interface="cn.yh.st.cms.api.service.CmsUserApiService"
 		check="false" />
+		
+	<dubbo:reference id="cmsRoleApiService" interface="cn.yh.st.cms.api.service.CmsRoleApiService"
+		check="false" />
+		
 </beans>

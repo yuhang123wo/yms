@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-layout-decorator="layout">
+<body>
+	<!-- /section:basics/content.breadcrumbs -->
+	<div layout:fragment="content" >
+	<div class="breadcrumbs" id="breadcrumbs">
+			<ul class="breadcrumb">
+				<li><i class="icon-home home-icon"></i> <a href="#">系统管理</a></li>
+				<li class="active">角色管理</li>
+			</ul>
+			<!-- .breadcrumb -->
+		</div>
+	<div class="page-content" seq="12">
+		<!-- /section:settings.box -->
+		<div class="page-content-area">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="table-responsive">
+								<table id="sample-table-2"
+									class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="center">ID</th>
+											<th class="center">角色名</th>
+											<th class="center">状态</th>
+											<th class="center">创建时间</th>
+											<th class="center">操作</th>
+										</tr>
+									</thead>
+									<tbody id="myData">
+									</tbody>
+								</table>
+							</div>
+							<div align="right">
+								<ul id="myPage" class="pagination">
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<!-- PAGE CONTENT ENDS -->
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.page-content-area -->
+		<!-- /.page-content-area -->
+		<!-- /.page-content -->
+		<script th:src="@{/assets/js/page.js}"></script>
+		<script th:inline="javascript">
+			function query(params) {
+				$curs = params;
+				window.location.hash = JSON.stringify($curs);
+				$.ajax({
+					type : "POST",
+					url : '/sys/roleDataList',
+					data : params,
+					dataType : 'json',
+					success : function(data) {
+						$('#myData').empty();
+						var template = Handlebars.compile($("#orderTemplate")
+								.html());
+						var $tr = template(data.data.list);
+						$('#myData').append($tr);
+						pagePlugin('myPage', data.data.pages,
+								data.data.pageNum, data.data.total, jumpPage);
+					}
+				});
+			}
+		</script>
+		<script id="orderTemplate" type="text/x-handlebars-template">
+	   {{#each this}}
+		<tr id="{{id}}">
+             <td class="center">{{id}}</td>
+             <td class="center">{{roleName}}</td>
+             <td class="center">{{state}}</td>
+             <td class="center">{{createTime}}</td>
+             <td class="center"><a href="/sys/userDetailIndex/{{id}}"> <button class="btn btn-xs btn-info"><i class="icon-edit bigger-120"></i></button></a></td>
+		</tr>
+	  {{/each}}
+	</script>
+	</div>
+</div>
+</body>
+</html>

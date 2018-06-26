@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.yh.st.cms.api.service.CmsRoleApiService;
 import cn.yh.st.cms.api.service.CmsUserApiService;
+import cn.yh.st.cms.domain.CmsRole;
 import cn.yh.st.cms.domain.CmsUser;
 import cn.yh.st.cms.util.ObjectToMap;
+import cn.yh.st.cms.vo.RoleParam;
 import cn.yh.st.cms.vo.UserParam;
 import cn.yh.st.common.util.ResultMsg;
 import cn.yh.st.common.util.ValidateUtil;
@@ -25,6 +28,8 @@ public class CmsSysController {
 
 	@Resource
 	private CmsUserApiService cmsUserApiService;
+	@Resource
+	private CmsRoleApiService cmsRoleApiService;
 
 	/**
 	 * 用户列表视图
@@ -77,5 +82,24 @@ public class CmsSysController {
 		}
 		return ResultMsg.failOperator();
 
+	}
+
+	/**
+	 * 
+	 */
+	@RequestMapping("roleIndex")
+	public String roleIndex() {
+		return "sys/role-list";
+	}
+
+	/**
+	 * 角色列表
+	 */
+	@PostMapping(value = "roleDataList")
+	@ResponseBody
+	public ResultMsg roleDataList(RoleParam params) {
+		PageInfo<CmsRole> list = cmsRoleApiService.queryPageByMap(ObjectToMap.getMap(params),
+				params.getPageNo(), params.getPageSize());
+		return ResultMsg.success(list);
 	}
 }

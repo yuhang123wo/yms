@@ -40,14 +40,14 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> QQ:</label>
 										<div class="col-sm-9">
-											<input type="text" name="qq"  class="col-xs-10 col-sm-5" th:value="${userModel.qq}">
+											<input type="text" name="qq"  class="col-xs-10 col-sm-5"  data-validation-engine="validate[required]" th:value="${userModel.qq}">
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="limited">备注：</label>
 										<div class="col-sm-9">
 											<div class="pos-rel">
-												<textarea class="form-control limited autosize-transition" name="remark" maxlength="50" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 52px;"></textarea>
+												<textarea class="form-control limited autosize-transition" th:text="${userModel.remark}" name="remark" maxlength="50" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 52px;"></textarea>
 											</div>
 										</div>
 									</div>
@@ -70,9 +70,9 @@
 											</button>
 
 											&nbsp; &nbsp; &nbsp;
-											<button class="btn" type="reset">
-												<i class="ace-icon fa fa-undo bigger-110"></i>
-												返回
+											<button class="btn" type="reset" >
+												<i class="ace-icon fa fa-undo bigger-110"><a href="/sys/userIndex">返回</a></i>
+												
 											</button>
 										</div>
 									</div>
@@ -111,9 +111,9 @@
             type: 'post',
             url: '/sys/updateUserInfo',
             success: function(data) {
-                if(data.flag == 0){
+                if(data.code == 0){
                 	bootbox.alert("操作成功!",function(){
-                		window.location.href = '${path}/sys/userIndex';
+                		window.location.href = '/sys/userIndex';
                 	});
                 }else{
                 	bootbox.alert("操作失败!");

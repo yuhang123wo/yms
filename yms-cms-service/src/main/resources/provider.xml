@@ -19,4 +19,7 @@
 	<!-- 声明需要暴露的服务接口 -->
 	<dubbo:service interface="cn.yh.st.cms.api.service.CmsUserApiService" ref="cmsUserApiService"
 		timeout="10000" />
+		
+	<dubbo:service interface="cn.yh.st.cms.api.service.CmsRoleApiService" ref="cmsRoleApiService"
+		timeout="10000" />
 </beans>

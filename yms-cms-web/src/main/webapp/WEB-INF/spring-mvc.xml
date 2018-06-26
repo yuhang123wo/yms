@@ -76,4 +76,5 @@
 	<bean id="exceptionResolver" class="cn.yh.st.cms.exception.ExceptionHandler" />
 	<!-- 定义无需Controller的url<->view直接映射 -->
 	<mvc:view-controller path="/" view-name="redirect:/login" />
+
 </beans>
