@@ -1,6 +1,5 @@
 package cn.yh.st.common.util;
 
-
 public class StringUtil {
 	/**
 	 * 是否为空
@@ -57,5 +56,17 @@ public class StringUtil {
 			return str.trim();
 		}
 		return null;
+	}
+
+	/**
+	 * 
+	 * @param t
+	 * @return boolean
+	 */
+	public static <T> boolean objectIsNotNull(T t) {
+		if (t == null) {
+			return false;
+		}
+		return true;
 	}
 }

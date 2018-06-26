@@ -3,10 +3,11 @@ package cn.yh.st.common.util;
 public class ResultMsg {
 
 	private int code;
-	private static final int CODE_SUCCESS = 0;
-	private static final int CODE_FAIL = -1;
+	public static final int CODE_SUCCESS = 0;
+	public static final int CODE_FAIL = -1;
 	private String msg;
 	private Object data;
+	public static final String ERROR_OPERATOR = "操作失败";
 
 	public static ResultMsg success() {
 		ResultMsg m = new ResultMsg();
@@ -25,6 +26,13 @@ public class ResultMsg {
 		ResultMsg m = new ResultMsg();
 		m.setCode(CODE_FAIL);
 		m.setMsg(msg);
+		return m;
+	}
+
+	public static ResultMsg failOperator() {
+		ResultMsg m = new ResultMsg();
+		m.setCode(CODE_FAIL);
+		m.setMsg(ERROR_OPERATOR);
 		return m;
 	}
 

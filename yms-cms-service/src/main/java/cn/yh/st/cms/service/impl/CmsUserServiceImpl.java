@@ -31,4 +31,14 @@ public class CmsUserServiceImpl implements CmsUserApiService {
 		return new PageInfo<CmsUser>(list);
 	}
 
+	@Override
+	public CmsUser getCmsUserById(long userId) {
+		return cmsUserDao.selectByPrimaryKey(userId);
+	}
+
+	@Override
+	public int updateUserInfo(CmsUser cmsUser) {
+		return cmsUserDao.updateUserInfo(cmsUser);
+	}
+
 }

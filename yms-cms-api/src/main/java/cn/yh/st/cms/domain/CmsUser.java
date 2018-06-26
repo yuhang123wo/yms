@@ -3,6 +3,11 @@ package cn.yh.st.cms.domain;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import cn.yh.st.base.Entity;
 
@@ -15,21 +20,27 @@ import cn.yh.st.base.Entity;
 public class CmsUser extends Entity {
 	private static final long serialVersionUID = 1L;
 
+	@NotEmpty(message = "用户名必填")
 	@Column(name = "username")
 	private String username;
 
 	@Column(name = "pwd")
 	private String pwd;
 
+	@NotEmpty(message = "真实名必填")
 	@Column(name = "realname")
 	private String realname;
 
+	@Min(value=0,message="未设置状态")
+	@Max(value=1,message="未设置状态")
 	@Column(name = "state")
 	private Integer state;
 
+	@NotEmpty(message = "联系电话必填")
 	@Column(name = "tel")
 	private String tel;
 
+	@NotEmpty(message = "qq必填")
 	@Column(name = "qq")
 	private String qq;
 

@@ -11,5 +11,9 @@ public interface CmsUserApiService {
 	CmsUser getCmsUserByName(String userName);
 
 	PageInfo<CmsUser> queryPageByMap(Map<String, Object> map, int pageNo, int pageSize);
+	
+	CmsUser getCmsUserById(long userId);
+	
+	int updateUserInfo(CmsUser cmsUser);
 
 }
