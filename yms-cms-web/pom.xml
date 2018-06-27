@@ -81,7 +81,7 @@
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 			<version>2.0.5</version>
 		</dependency>
-		<!-- swagger2 -->
+		<!-- swagger2  此处会引起spring版本和jackson版本冲突需要去除-->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
