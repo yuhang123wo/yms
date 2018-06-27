@@ -4,8 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -16,24 +18,18 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @ComponentScan(basePackages = { "cn.yh.st.cms.api" })
 @EnableWebMvc
-public class SwaggerConfig extends WebMvcConfigurationSupport {
+public class SwaggerConfig {
 
 	@Bean
-	public Docket customDocket() {
-		//
-		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo());
+	public Docket createRestApi() {
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
+				.apis(RequestHandlerSelectors.basePackage("cn.yh.st.cms.api"))
+				.paths(PathSelectors.any()).build();
 	}
 
 	private ApiInfo apiInfo() {
-		Contact contact = new Contact("老王", "https://www.baidu.me", "baidu_666@icloud.com");
-		return new ApiInfo("Blog前台API接口",// 大标题 title
-				"Swagger测试demo",// 小标题
-				"0.0.1",// 版本
-				"www.baidu.com",// termsOfServiceUrl
-				contact,// 作者
-				"Blog",// 链接显示文字
-				"https://www.baidu.me"// 网站链接
-		);
+		return new ApiInfoBuilder().title("接口列表 v1.0").description("接口信息")
+				.termsOfServiceUrl("http://honghu.com").contact(new Contact("", "", "HongHu"))
+				.version("1.1.0").build();
 	}
-
 }

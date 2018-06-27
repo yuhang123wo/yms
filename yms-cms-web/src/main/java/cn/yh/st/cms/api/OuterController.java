@@ -1,26 +1,32 @@
 package cn.yh.st.cms.api;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponses;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import cn.yh.st.common.util.ResultMsg;
+
+@RestController
+@RequestMapping("api")
 @Api(tags = "test接口")
 public class OuterController {
 
-	@RequestMapping(value = "/listCompound")
-	@ResponseBody
-	@ApiResponses(value = {})
-	@ApiOperation(httpMethod = "GET", value = "个人信息")
-	// swagger 当前接口注解
-	public String listCompound(
-			@ApiParam(required = true, name = "start", value = "start") int start, int limit,
-			@ApiParam(required = false, name = "userName", value = "名称模糊查询") String userName) {
-		return userName;
+	@RequestMapping("listCoup")
+	@ApiOperation(value = "教程", httpMethod = "POST", notes = "教程")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "province", required = false, value = "省", paramType = "query", dataType = "String"),
+			@ApiImplicitParam(name = "city", required = false, value = "市", paramType = "query", dataType = "String"), })
+	public ResultMsg listCompound(String province, String city) {
+		return ResultMsg.success();
+	}
+
+	@RequestMapping("testModel")
+	@ApiOperation(value = "testModel", httpMethod = "POST", notes = "testModel")
+	public ResultMsg testModel(TestModel model) {
+		return ResultMsg.success();
 	}
 }

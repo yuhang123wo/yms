@@ -76,5 +76,12 @@
 	<bean id="exceptionResolver" class="cn.yh.st.cms.exception.ExceptionHandler" />
 	<!-- 定义无需Controller的url<->view直接映射 -->
 	<mvc:view-controller path="/" view-name="redirect:/login" />
+	
+	
+	
+	<bean class="cn.yh.st.cms.config.SwaggerConfig" id="swagger2Config"/>
+	
+	<!-- <mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
+	<mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/> -->
 
 </beans>

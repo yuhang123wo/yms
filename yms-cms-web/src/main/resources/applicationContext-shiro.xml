@@ -40,6 +40,12 @@
 				/captcha=anon
 				/test/** =anon
 				/assets/** =anon
+				/swagger-ui.html=anon
+				/swagger-resources/**=anon
+				/swagger-ui.html=anon
+				/v2/api-docs =anon
+				/webjars/** =anon
+				/api/**=anon
 				/** = authc
 			</value>
 		</property>
