@@ -14,6 +14,34 @@
 		<!-- /section:settings.box -->
 		<div class="page-content-area">
 			<div class="row">
+			   <div class="col-xs-12">
+
+										<div class="table-header">
+											角色列表
+										</div>
+										<table width="100%" class="CSSearchTbl" cellpadding="0" cellspacing="0">
+			                                <tbody>
+			                                <tr>
+			                                    <td class="left">角色名称：</td>
+			                                    <td class="right"><input type="text" size="16"></td>
+			                                    <td class="left">创建时间：</td>
+			                                    <td class="right"><input type="text" size="16" class="datePicker" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"> 至 <input type="text" size="16" class="datePicker" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"></td>
+			                                    <td class="right" colspan="1">
+			                                    	<button class="btn btn-primary pull-left col-sm-10" data-dismiss="modal">
+														搜索 
+														<i class="ace-icon fa fa-search"></i>
+													</button>
+												</td>
+												<td class="left"></td>
+												<td class="right" colspan="1"><a href="/sys/editRoleIndex/0">
+			                                    	<button class="btn btn-danger pull-left col-sm-10" data-dismiss="modal">
+														新增 
+														<i class="ace-icon fa  fa-plus-square-o"></i>
+													</button></a>
+												</td>
+			                                </tr>
+			                            </tbody></table> 
+									</div>
 				<div class="col-xs-12">
 					<div class="row">
 						<div class="col-xs-12">
@@ -78,7 +106,7 @@
              <td class="center">{{roleName}}</td>
              <td class="center">{{state}}</td>
              <td class="center">{{createTime}}</td>
-             <td class="center"><a href="/sys/userDetailIndex/{{id}}"> <button class="btn btn-xs btn-info"><i class="icon-edit bigger-120"></i></button></a></td>
+             <td class="center"><a href="/sys/editRoleIndex/{{id}}"> <button class="btn btn-xs btn-info"><i class="icon-edit bigger-120"></i></button></a></td>
 		</tr>
 	  {{/each}}
 	</script>

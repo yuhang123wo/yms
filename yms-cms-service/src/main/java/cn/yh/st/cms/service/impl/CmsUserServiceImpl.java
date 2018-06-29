@@ -8,7 +8,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import cn.yh.st.cms.api.service.CmsUserApiService;
+import cn.yh.st.cms.dao.CmsAuthDao;
 import cn.yh.st.cms.dao.CmsUserDao;
+import cn.yh.st.cms.domain.CmsAuth;
 import cn.yh.st.cms.domain.CmsUser;
 
 import com.github.pagehelper.PageHelper;
@@ -18,6 +20,8 @@ import com.github.pagehelper.PageInfo;
 public class CmsUserServiceImpl implements CmsUserApiService {
 	@Resource
 	private CmsUserDao cmsUserDao;
+	@Resource
+	private CmsAuthDao cmsAuthDao;
 
 	@Override
 	public CmsUser getCmsUserByName(String userName) {
@@ -39,6 +43,11 @@ public class CmsUserServiceImpl implements CmsUserApiService {
 	@Override
 	public int updateUserInfo(CmsUser cmsUser) {
 		return cmsUserDao.updateUserInfo(cmsUser);
+	}
+
+	@Override
+	public List<CmsAuth> findAuthAll() {
+		return cmsAuthDao.select(null);
 	}
 
 }

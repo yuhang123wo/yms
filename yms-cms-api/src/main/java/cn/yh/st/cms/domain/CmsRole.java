@@ -3,6 +3,10 @@ package cn.yh.st.cms.domain;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import cn.yh.st.base.Entity;
 
@@ -15,14 +19,27 @@ import cn.yh.st.base.Entity;
 public class CmsRole extends Entity {
 	private static final long serialVersionUID = 1L;
 
+	@NotBlank(message = "不能为空")
 	@Column(name = "role_name")
 	private String roleName;
 
+	@Min(value=0,message="未设置状态")
+	@Max(value=1,message="未设置状态")
 	@Column(name = "state")
 	private Integer state;
 
 	@Column(name = "create_time")
 	private Date createTime;
+
+	private String authIds;
+
+	public String getAuthIds() {
+		return authIds;
+	}
+
+	public void setAuthIds(String authIds) {
+		this.authIds = authIds;
+	}
 
 	public String getRoleName() {
 		return roleName;

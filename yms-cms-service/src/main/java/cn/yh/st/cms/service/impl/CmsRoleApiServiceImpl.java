@@ -8,8 +8,12 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import cn.yh.st.cms.api.service.CmsRoleApiService;
+import cn.yh.st.cms.dao.CmsAuthDao;
+import cn.yh.st.cms.dao.CmsRoleAuthDao;
 import cn.yh.st.cms.dao.CmsRoleDao;
 import cn.yh.st.cms.domain.CmsRole;
+import cn.yh.st.cms.domain.CmsRoleAuth;
+import cn.yh.st.common.exception.DefaultAutoHandledException;
 
 import com.github.abel533.entity.Example;
 import com.github.pagehelper.PageHelper;
@@ -20,6 +24,10 @@ public class CmsRoleApiServiceImpl implements CmsRoleApiService {
 
 	@Resource
 	private CmsRoleDao cmsRoleDao;
+	@Resource
+	private CmsAuthDao cmsAuthDao;
+	@Resource
+	private CmsRoleAuthDao cmsRoleAuthDao;
 
 	@Override
 	public PageInfo<CmsRole> queryPageByMap(Map<String, Object> map, int pageNo, int pageSize) {
@@ -32,4 +40,35 @@ public class CmsRoleApiServiceImpl implements CmsRoleApiService {
 		return new PageInfo<CmsRole>(list);
 	}
 
+	@Override
+	public CmsRole queryById(long id) {
+		return cmsRoleDao.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public int insertOrUpdate(CmsRole cmsRole) {
+		if (cmsRole == null)
+			throw new DefaultAutoHandledException("操作信息为空");
+		if (cmsRole.getId() != null && cmsRole.getId() > 0) {
+			cmsRoleDao.updateByPrimaryKey(cmsRole);
+		} else {
+			cmsRoleDao.insert(cmsRole);
+		}
+
+		if (cn.yh.st.common.util.StringUtil.isEmpty(cmsRole.getAuthIds())) {
+			return 1;
+		}
+		// 先删除权限
+		cmsRoleAuthDao.delRoleAuthByRoleId(cmsRole.getId());
+		String[] arrayAuth = cmsRole.getAuthIds().split("\\,");
+		for (int i = 0; i < arrayAuth.length; i++) {
+			cmsRoleAuthDao.insert(new CmsRoleAuth(cmsRole.getId(), Long.parseLong(arrayAuth[i])));
+		}
+		return 1;
+	}
+
+	@Override
+	public List<Long> listAuthByRoleId(long roleId) {
+		return cmsAuthDao.listAuthByRoleId(roleId);
+	}
 }

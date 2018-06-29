@@ -19,6 +19,16 @@ public class CmsRoleAuth extends Entity {
 	@Column(name = "auth_id")
 	private Long authId;
 
+	
+	
+	public CmsRoleAuth() {
+	}
+
+	public CmsRoleAuth(Long roleId, Long authId) {
+		this.roleId = roleId;
+		this.authId = authId;
+	}
+
 	public Long getRoleId() {
 		return roleId;
 	}
