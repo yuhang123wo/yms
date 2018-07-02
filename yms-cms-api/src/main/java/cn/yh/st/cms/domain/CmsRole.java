@@ -3,6 +3,7 @@ package cn.yh.st.cms.domain;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
@@ -31,6 +32,7 @@ public class CmsRole extends Entity {
 	@Column(name = "create_time")
 	private Date createTime;
 
+	@Transient
 	private String authIds;
 
 	public String getAuthIds() {

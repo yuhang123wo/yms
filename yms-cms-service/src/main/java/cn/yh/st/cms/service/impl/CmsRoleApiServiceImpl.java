@@ -1,5 +1,6 @@
 package cn.yh.st.cms.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +53,7 @@ public class CmsRoleApiServiceImpl implements CmsRoleApiService {
 		if (cmsRole.getId() != null && cmsRole.getId() > 0) {
 			cmsRoleDao.updateByPrimaryKey(cmsRole);
 		} else {
+			cmsRole.setCreateTime(new Date());
 			cmsRoleDao.insert(cmsRole);
 		}
 

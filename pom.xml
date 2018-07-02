@@ -11,6 +11,9 @@
 		<module>yms-cms-api</module>
 		<module>yms-cms-web</module>
 		<module>yms-cms-service</module>
+		<module>yms-blog-api</module>
+		<module>yms-blog-service</module>
+		<module>yms-blog-agent</module>
 	</modules>
 
 	<properties>

@@ -71,7 +71,22 @@
 	   <script type="text/javascript" th:src="@{/assets/js/jquery.ztree.core.js}"></script>
 	   <script type="text/javascript" th:src="@{/assets/js/jquery.ztree.excheck.js}"></script>
 	   <SCRIPT th:inline="javascript">
-		var setting = {
+		var loading = false;
+		var resetData = null;
+		
+		$(function(){
+			$('#dataForm').validationEngine({
+				promptPosition: 'centerRight',
+				  scroll: false,
+				  binded:false,
+				  'custom_error_messages':{"required":{'message':"不能为空"}},
+				  promptPosition:'bottomLeft',
+				  autoPositionUpdate:true,
+				  addPromptClass: 'formError-white',
+				  showOneMessage:true
+			});
+		});
+	   var setting = {
 			check: {
 				enable: true
 			},
@@ -86,6 +101,13 @@
 		}); 
 		
 		function getSelected(){
+			if(loading){
+				return false;
+			}
+			var validateSta = $('#dataForm').validationEngine('validate');
+			if(!validateSta){
+				return false;
+			}
 			var treeObj=$.fn.zTree.getZTreeObj("treeDemo");
 	        var nodes=treeObj.getCheckedNodes(true);
 	        var v="";
@@ -98,9 +120,17 @@
 				data : {authIds:v,id:[[${role.id}]],roleName:$("#roleName").val(),state:$("#state").val()},
 				dataType : 'json',
 				success : function(data) {
-					alert(data.rspCode+":"+data.rspMsg);
+					if(data.code == 0){
+	                	bootbox.alert("操作成功!",function(){
+	                		window.location.href = '/sys/roleIndex';
+	                	});
+	                }else{
+	                	bootbox.alert("操作失败!");
+	                }
+	                loading = false;
 				}
 			});
+	    	return false;
 		}
 	</SCRIPT>
 		

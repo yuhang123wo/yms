@@ -10,7 +10,7 @@ import cn.yh.st.base.Entity;
  * @version 1.0
  * @创建时间：2018-6-8 16:39:28
  */
-public class CmsUserRole extends Entity {
+public class CmsUserRole {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "user_id")
