@@ -1,13 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>cn.yu.st</groupId>
-    <artifactId>yms</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>yms-blog-agent</artifactId>
-  
-  <properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>cn.yu.st</groupId>
+		<artifactId>yms</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>yms-blog-agent</artifactId>
+	<packaging>war</packaging>
+
+	<properties>
 		<servlet.version>2.5</servlet.version>
 		<jsp.version>2.1</jsp.version>
 		<shiro.version>1.2.4</shiro.version>
@@ -80,56 +82,56 @@
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 			<version>2.0.5</version>
 		</dependency>
-		<!-- swagger2  此处会引起spring版本和jackson版本冲突需要去除-->
+		<!-- swagger2 此处会引起spring版本和jackson版本冲突需要去除 -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
 			<version>2.8.0</version>
 			<exclusions>
-				 <exclusion> 
-                    <groupId>org.springframework</groupId> 
-                    <artifactId>spring-core</artifactId> 
-                </exclusion> 
-                <exclusion> 
-                    <groupId>org.springframework</groupId> 
-                    <artifactId>spring-beans</artifactId> 
-                </exclusion> 
-                <exclusion> 
-                    <groupId>org.springframework</groupId> 
-                    <artifactId>spring-context</artifactId> 
-                </exclusion> 
-                <exclusion> 
-                    <groupId>org.springframework</groupId> 
-                    <artifactId>spring-context-support</artifactId> 
-                </exclusion> 
-                <exclusion> 
-                    <groupId>org.springframework</groupId> 
-                    <artifactId>spring-aop</artifactId> 
-                </exclusion> 
-                <exclusion> 
-                    <groupId>org.springframework</groupId> 
-                    <artifactId>spring-tx</artifactId> 
-                </exclusion> 
-                <exclusion> 
-                    <groupId>org.springframework</groupId> 
-                    <artifactId>spring-orm</artifactId> 
-                </exclusion> 
-                <exclusion> 
-                    <groupId>org.springframework</groupId> 
-                    <artifactId>spring-jdbc</artifactId> 
-                </exclusion> 
-                <exclusion> 
-                    <groupId>org.springframework</groupId> 
-                    <artifactId>spring-web</artifactId> 
-                </exclusion> 
-                <exclusion> 
-                    <groupId>org.springframework</groupId> 
-                    <artifactId>spring-webmvc</artifactId> 
-                </exclusion> 
-                <exclusion> 
-                    <groupId>org.springframework</groupId> 
-                    <artifactId>spring-oxm</artifactId> 
-                </exclusion> 
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context-support</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aop</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-tx</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-orm</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-jdbc</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-webmvc</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-oxm</artifactId>
+				</exclusion>
 				<exclusion>
 					<groupId>com.fasterxml.jackson.core</groupId>
 					<artifactId>jackson-core</artifactId>

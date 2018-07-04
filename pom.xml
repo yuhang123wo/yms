@@ -13,7 +13,7 @@
 		<module>yms-cms-service</module>
 		<module>yms-blog-api</module>
 		<module>yms-blog-service</module>
-		<module>yms-blog-agent</module>
+		<module>yms-task</module>
 	</modules>
 
 	<properties>

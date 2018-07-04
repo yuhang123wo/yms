@@ -3,9 +3,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace必须指向Dao接口 -->
 <mapper namespace="cn.yh.st.cms.dao.CmsUserDao">
-	<sql id="sqlColumn">
-		id,username username,pwd pwd,realname realname,state state,tel tel,qq qq,remark remark,update_time updateTime,create_time createTime
-	</sql>
+	<resultMap type="cn.yh.st.cms.domain.CmsUser" id="CmsUser">
+		<result property="id" column="id" />
+		<result property="username" column="username" />
+		<result property="pwd" column="pwd" />
+		<result property="realname" column="realname" />
+		<result property="state" column="state" />
+		<result property="qq" column="qq" />
+		<result property="remark" column="remark" />
+		<result property="createTime" column="create_time" />
+	</resultMap>
 	<sql id="whereCmsUser">
 		<where>
 			<if test="endTime!=null">
@@ -20,9 +27,9 @@
 			</if>
 		</where>
 	</sql>
-	<select id="listCmsUserByParams" resultType="cn.yh.st.cms.domain.CmsUser">
+	<select id="listCmsUserByParams" resultMap="CmsUser">
 		select
-		<include refid="sqlColumn"></include>
+		 *
 		from cms_user
 		<include refid="whereCmsUser" />
 	</select>
