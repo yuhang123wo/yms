@@ -109,9 +109,9 @@ $(".single .content img").lazyload({
 });
  
 //IE6-9禁止用户选中文本
-document.body.onselectstart = document.body.ondrag = function () {
-    return false;
-};
+//document.body.onselectstart = document.body.ondrag = function () {
+//    return false;
+//};
  
 //启用工具提示
 $('[data-toggle="tooltip"]').tooltip();
@@ -158,50 +158,6 @@ $(window).scroll(function () {
 	return false;
 };*/
 
-/*自定义右键菜单*/
-(function () {
-    var oMenu = document.getElementById("rightClickMenu");
-    var aLi = oMenu.getElementsByTagName("li");
-	//加载后隐藏自定义右键菜单
-	//oMenu.style.display = "none";
-    //菜单鼠标移入/移出样式
-    for (i = 0; i < aLi.length; i++) {
-        //鼠标移入样式
-        aLi[i].onmouseover = function () {
-            $(this).addClass('rightClickMenuActive');
-			//this.className = "rightClickMenuActive";
-        };
-        //鼠标移出样式
-        aLi[i].onmouseout = function () {
-            $(this).removeClass('rightClickMenuActive');
-			//this.className = "";
-        };
-    }
-    //自定义菜单
-    document.oncontextmenu = function (event) {
-		$(oMenu).fadeOut(0);
-        var event = event || window.event;
-        var style = oMenu.style;
-        $(oMenu).fadeIn(300);
-		//style.display = "block";
-        style.top = event.clientY + "px";
-        style.left = event.clientX + "px";
-        return false;
-    };
-    //页面点击后自定义菜单消失
-    document.onclick = function () {
-        $(oMenu).fadeOut(100);
-		//oMenu.style.display = "none"
-    }
-})();
-
-/*禁止键盘操作*/
-document.onkeydown=function(event){
-	var e = event || window.event || arguments.callee.caller.arguments[0];
-	if((e.keyCode === 123) || (e.ctrlKey) || (e.ctrlKey) && (e.keyCode === 85)){
-		return false;
-	}
-}; 
 
 /*文章评论*/
 $(function(){

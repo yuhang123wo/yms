@@ -56,11 +56,16 @@
 	</bean>
 	
 	<!-- layout 布局需要 -->
-	<bean id="layoutDialect" class="nz.net.ultraq.thymeleaf.LayoutDialect" />
+<!-- 	<bean id="layoutDialect" class="nz.net.ultraq.thymeleaf.LayoutDialect" /> -->
 	
 	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
 		<property name="templateResolver" ref="templateResolver" />
-		<property name="additionalDialects" ref="layoutDialect"></property>
+		<property name="additionalDialects">
+		   <set>  
+	         <bean class="nz.net.ultraq.thymeleaf.LayoutDialect"/>  
+	         <bean class="at.pollux.thymeleaf.shiro.dialect.ShiroDialect"/>
+	    </set> 
+		</property>
 	</bean>
 
 	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">

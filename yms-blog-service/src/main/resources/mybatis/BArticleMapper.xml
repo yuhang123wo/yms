@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="cn.yh.st.blog.dao.BArticleDao">
+	<resultMap type="cn.yh.st.blog.domain.BArticle" id="BArticle">
+		<result property="id" column="id" />
+		<result property="contentId" column="content_id" />
+		<result property="title" column="title" />
+		<result property="abstr" column="abstr" />
+		<result property="categoryId" column="category_id" />
+		<result property="categoryValue" column="category_value" />
+		<result property="imgUrl" column="img_url" />
+		<result property="top" column="top" />
+		<result property="keyId" column="key_id" />
+		<result property="keyValue" column="key_value" />
+		<result property="createTime" column="create_time" />
+	</resultMap>
+
+	<sql id="whereBArticle">
+		<where>
+			<if test="idMin!=null">
+		       <![CDATA[
+		           and id>=#{idMin}
+		      ]]>
+			</if>
+			<if test="idMax!=null">
+		       <![CDATA[
+		           and id=<#{idMax}
+		      ]]>
+			</if>
+			<if test="keyValue!=null">
+			   and key_value like #{keyValue}
+			</if>
+			<if test="idNot!=null">
+			   and id not in(#{idNot})
+			</if>
+			<if test="endTime!=null">
+	        	<![CDATA[
+	        		and create_time<=#{endTime}
+	        	]]>
+			</if>
+			<if test="startTime!=null">
+	        	<![CDATA[
+	        		and create_time>=#{startTime}
+	        	]]>
+			</if>
+		</where>
+	</sql>
+
+	<select id="listBArticleByParams" resultMap="BArticle">
+		select * from b_article
+		<include refid="whereBArticle"></include>
+		order by id desc
+	</select>
+</mapper>
+

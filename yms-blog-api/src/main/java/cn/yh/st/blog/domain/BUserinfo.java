@@ -25,7 +25,7 @@ public class BUserinfo extends Entity {
 	private String userName;
 
 	@Column(name = "user_sex")
-	private int userSex;
+	private Integer userSex;
 
 	@Column(name = "user_birthday")
 	private Date userBirthday;
@@ -40,25 +40,25 @@ public class BUserinfo extends Entity {
 	private String userIntroduction;
 
 	@Column(name = "user_place")
-	private int userPlace;
+	private Integer userPlace;
 
 	@Column(name = "user_image")
 	private String userImage;
 
 	@Column(name = "user_recent_login_time")
-	private Date userRecentLoginTime;
+	private Date userRecentLogIntegerime;
 
 	@Column(name = "user_pv")
-	private int userPv;
+	private Integer userPv;
 
 	@Column(name = "create_time")
 	private Date createTime;
 
 	@Column(name = "state")
-	private int state;
+	private Integer state;
 
 	public String getUserAccount() {
-		return this.userAccount;
+		return userAccount;
 	}
 
 	public void setUserAccount(String userAccount) {
@@ -66,7 +66,7 @@ public class BUserinfo extends Entity {
 	}
 
 	public String getUserPassword() {
-		return this.userPassword;
+		return userPassword;
 	}
 
 	public void setUserPassword(String userPassword) {
@@ -74,23 +74,23 @@ public class BUserinfo extends Entity {
 	}
 
 	public String getUserName() {
-		return this.userName;
+		return userName;
 	}
 
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
-	public int getUserSex() {
-		return this.userSex;
+	public Integer getUserSex() {
+		return userSex;
 	}
 
-	public void setUserSex(int userSex) {
+	public void setUserSex(Integer userSex) {
 		this.userSex = userSex;
 	}
 
 	public Date getUserBirthday() {
-		return this.userBirthday;
+		return userBirthday;
 	}
 
 	public void setUserBirthday(Date userBirthday) {
@@ -98,7 +98,7 @@ public class BUserinfo extends Entity {
 	}
 
 	public String getUserJob() {
-		return this.userJob;
+		return userJob;
 	}
 
 	public void setUserJob(String userJob) {
@@ -106,7 +106,7 @@ public class BUserinfo extends Entity {
 	}
 
 	public String getUserPost() {
-		return this.userPost;
+		return userPost;
 	}
 
 	public void setUserPost(String userPost) {
@@ -114,58 +114,58 @@ public class BUserinfo extends Entity {
 	}
 
 	public String getUserIntroduction() {
-		return this.userIntroduction;
+		return userIntroduction;
 	}
 
 	public void setUserIntroduction(String userIntroduction) {
 		this.userIntroduction = userIntroduction;
 	}
 
-	public int getUserPlace() {
-		return this.userPlace;
+	public Integer getUserPlace() {
+		return userPlace;
 	}
 
-	public void setUserPlace(int userPlace) {
+	public void setUserPlace(Integer userPlace) {
 		this.userPlace = userPlace;
 	}
 
 	public String getUserImage() {
-		return this.userImage;
+		return userImage;
 	}
 
 	public void setUserImage(String userImage) {
 		this.userImage = userImage;
 	}
 
-	public Date getUserRecentLoginTime() {
-		return this.userRecentLoginTime;
+	public Date getUserRecentLogIntegerime() {
+		return userRecentLogIntegerime;
 	}
 
-	public void setUserRecentLoginTime(Date userRecentLoginTime) {
-		this.userRecentLoginTime = userRecentLoginTime;
+	public void setUserRecentLogIntegerime(Date userRecentLogIntegerime) {
+		this.userRecentLogIntegerime = userRecentLogIntegerime;
 	}
 
-	public int getUserPv() {
-		return this.userPv;
+	public Integer getUserPv() {
+		return userPv;
 	}
 
-	public void setUserPv(int userPv) {
+	public void setUserPv(Integer userPv) {
 		this.userPv = userPv;
 	}
 
 	public Date getCreateTime() {
-		return this.createTime;
+		return createTime;
 	}
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 
-	public int getState() {
-		return this.state;
+	public Integer getState() {
+		return state;
 	}
 
-	public void setState(int state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
 

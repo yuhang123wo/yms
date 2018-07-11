@@ -22,7 +22,7 @@
 		<property name="credentialsMatcher">
 			<bean class="cn.yh.st.blog.agent.web.shiro.CustomCredentialsMatcher" />
 		</property>
-<!-- 		<property name="cmsUserApiService" ref="cmsUserApiService"></property> -->
+		<property name="blogApiService" ref="blogApiService"></property>
 	</bean>
 
 	<!-- 用户授权信息Cache, 采用EhCache，本地缓存最长时间应比中央缓存时间短一些，以确保Session中doReadSession方法调用时更新中央缓存过期时间 -->

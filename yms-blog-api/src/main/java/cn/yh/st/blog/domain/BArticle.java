@@ -36,8 +36,8 @@ public class BArticle extends Entity {
 	@Column(name = "top")
 	private String top; // 1为热门文章
 
-	@Column(name = "key")
-	private long key; // 关键字
+	@Column(name = "key_id")
+	private long keyId; // 关键字
 
 	@Column(name = "key_value")
 	private String keyValue;
@@ -101,12 +101,12 @@ public class BArticle extends Entity {
 		this.top = top;
 	}
 
-	public long getKey() {
-		return this.key;
+	public long getKeyId() {
+		return keyId;
 	}
 
-	public void setKey(long key) {
-		this.key = key;
+	public void setKeyId(long keyId) {
+		this.keyId = keyId;
 	}
 
 	public String getKeyValue() {
