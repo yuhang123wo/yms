@@ -75,4 +75,14 @@ public interface BlogApiService {
 	 * @return BUserinfo
 	 */
 	BUserinfo getBUserinfoByName(String name);
+	
+	/**
+	 * 
+	 * @param articleId
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 * PageInfo<BComment>
+	 */
+	PageInfo<BComment> getPageBCommentByArticleId(long articleId,int pageNo,int pageSize);
 }

@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
-import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.yh.st.blog.api.service.BlogApiService;
 import cn.yh.st.blog.domain.BArticle;
@@ -41,7 +43,6 @@ public class ArticleController {
 		Map<String, Object> hashMap = new HashMap<String, Object>();
 		model.addAttribute("bArticle", bArticle);
 		model.addAttribute("bContent", blogApiService.getBContentById(bArticle.getContentId()));
-		model.addAttribute("bComment", blogApiService.getBCommentByArticleId(bArticle.getId()));
 		model.addAttribute("articles", blogApiService.loadBArticlePageByParams(hashMap, 1, 10)
 				.getList());
 		model.addAttribute("news", blogApiService.getBGoodByLast());
@@ -50,5 +51,21 @@ public class ArticleController {
 		model.addAttribute("relationArticle", blogApiService
 				.loadBArticlePageByParams(hashMap, 1, 5).getList());
 		return "article";
+	}
+
+	/**
+	 * 取评论
+	 * 
+	 * @param id
+	 * @param pageNo
+	 * @param pageSize
+	 * @return Object
+	 */
+	@RequestMapping("getArticleComments")
+	@ResponseBody
+	public Object getArticleComments(HttpServletRequest request, long id) {
+		int pageNo = ServletRequestUtils.getIntParameter(request, "pageNo", 1);
+		int pageSize = ServletRequestUtils.getIntParameter(request, "pageSize", 10);
+		return blogApiService.getPageBCommentByArticleId(id, pageNo, pageSize);
 	}
 }

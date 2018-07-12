@@ -95,4 +95,11 @@ public class BlogApiServiceImpl implements BlogApiService {
 		b.setUserAccount(name);
 		return bUserinfoDao.selectOne(b);
 	}
+
+	@Override
+	public PageInfo<BComment> getPageBCommentByArticleId(long articleId, int pageNo, int pageSize) {
+		PageHelper.startPage(pageNo, pageSize);
+		List<BComment> list = this.getBCommentByArticleId(articleId);
+		return new PageInfo<BComment>(list);
+	}
 }
