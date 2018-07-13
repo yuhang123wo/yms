@@ -59,13 +59,13 @@
 		<div class="widget widget_hot">
 			<h3>热门文章</h3>
 			<ul>
-				<li th:each="article: ${articles}"><a href=""><span
+				<li th:each="arte: ${articles}"><a  th:href="@{'/article/articleDetailIndex/'+${arte.id}}"><span
 						class="thumbnail"><img class="thumb"
-							data-original="images/excerpt.jpg" src="images/excerpt.jpg"
+							data-original="/images/excerpt.jpg" src="/images/excerpt.jpg"
 							alt=""></span> <span class="text"><span
-							th:text="${article.title}"></span></span> <span class="muted"><i
+							th:text="${arte.title}"></span></span> <span class="muted"><i
 							class="glyphicon glyphicon-time"></i> <span
-							th:text="${article.createTime}"></span> </span> <span class="muted"><i
+							th:text="${arte.createTime}"></span> </span> <span class="muted"><i
 							class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
 			</ul>
 		</div>

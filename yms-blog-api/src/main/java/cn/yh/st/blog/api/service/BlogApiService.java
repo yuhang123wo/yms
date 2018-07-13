@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import cn.yh.st.blog.domain.BArticle;
+import cn.yh.st.blog.domain.BCategory;
 import cn.yh.st.blog.domain.BComment;
 import cn.yh.st.blog.domain.BContent;
 import cn.yh.st.blog.domain.BGood;
@@ -75,14 +76,54 @@ public interface BlogApiService {
 	 * @return BUserinfo
 	 */
 	BUserinfo getBUserinfoByName(String name);
-	
+
 	/**
 	 * 
 	 * @param articleId
 	 * @param pageNo
 	 * @param pageSize
-	 * @return
-	 * PageInfo<BComment>
+	 * @return PageInfo<BComment>
 	 */
-	PageInfo<BComment> getPageBCommentByArticleId(long articleId,int pageNo,int pageSize);
+	PageInfo<BComment> getPageBCommentByArticleId(long articleId, int pageNo, int pageSize);
+
+	/**
+	 * 取所有关键词
+	 * 
+	 * @return List<BKeyword>
+	 */
+
+	List<BKeyword> getAllKeyword();
+
+	/**
+	 * 取所有分类
+	 * 
+	 * @return List<BCategory>
+	 */
+	List<BCategory> getAllCategory();
+
+	/**
+	 * 插入文章
+	 * 
+	 * @param article
+	 * @return int
+	 */
+	int insertArticle(BArticle article);
+
+	/**
+	 * 插入content
+	 * 
+	 * @param content
+	 * @return int
+	 */
+	int insertContent(BContent content);
+
+	/**
+	 * 
+	 * @param artContent
+	 * @param title
+	 * @param keyId
+	 * @param categoryId
+	 * @return int
+	 */
+	int insertArticleAndContent(String artContent, String title, long keyId, long categoryId);
 }

@@ -1,5 +1,6 @@
 package cn.yh.st.blog.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -9,17 +10,20 @@ import org.springframework.stereotype.Service;
 
 import cn.yh.st.blog.api.service.BlogApiService;
 import cn.yh.st.blog.dao.BArticleDao;
+import cn.yh.st.blog.dao.BCategoryDao;
 import cn.yh.st.blog.dao.BCommentDao;
 import cn.yh.st.blog.dao.BContentDao;
 import cn.yh.st.blog.dao.BGoodDao;
 import cn.yh.st.blog.dao.BKeywordDao;
 import cn.yh.st.blog.dao.BUserinfoDao;
 import cn.yh.st.blog.domain.BArticle;
+import cn.yh.st.blog.domain.BCategory;
 import cn.yh.st.blog.domain.BComment;
 import cn.yh.st.blog.domain.BContent;
 import cn.yh.st.blog.domain.BGood;
 import cn.yh.st.blog.domain.BKeyword;
 import cn.yh.st.blog.domain.BUserinfo;
+import cn.yh.st.common.exception.DefaultAutoHandledException;
 
 import com.github.abel533.entity.Example;
 import com.github.pagehelper.PageHelper;
@@ -39,6 +43,8 @@ public class BlogApiServiceImpl implements BlogApiService {
 	private BCommentDao bCommentDao;
 	@Resource
 	private BUserinfoDao bUserinfoDao;
+	@Resource
+	private BCategoryDao bCategoryDao;
 
 	@Override
 	public int saveGood(BGood bGood) {
@@ -101,5 +107,52 @@ public class BlogApiServiceImpl implements BlogApiService {
 		PageHelper.startPage(pageNo, pageSize);
 		List<BComment> list = this.getBCommentByArticleId(articleId);
 		return new PageInfo<BComment>(list);
+	}
+
+	@Override
+	public List<BKeyword> getAllKeyword() {
+		return bKeywordDao.selectByExample(new Example(BKeyword.class));
+	}
+
+	@Override
+	public List<BCategory> getAllCategory() {
+		return bCategoryDao.selectByExample(new Example(BCategory.class));
+	}
+
+	@Override
+	public int insertArticle(BArticle article) {
+		return bArticleDao.insert(article);
+	}
+
+	@Override
+	public int insertContent(BContent content) {
+		return bContentDao.insert(content);
+	}
+
+	@Override
+	public int insertArticleAndContent(String artContent, String title, long keyId, long categoryId) {
+		BContent content = new BContent();
+		content.setContent(artContent);
+		int n = bContentDao.insert(content);
+		if (n != 1) {
+			throw new DefaultAutoHandledException("操作失败");
+		}
+		BArticle bArticle = new BArticle();
+		bArticle.setAbstr("");
+		bArticle.setTitle(title);
+		BCategory bCategory = bCategoryDao.selectByPrimaryKey(keyId);
+		if (bCategory != null) {
+			bArticle.setCategoryId(categoryId);
+			bArticle.setCategoryValue(bCategory.getChiName());
+		}
+		BKeyword bKeyword = bKeywordDao.selectByPrimaryKey(keyId);
+		if (bKeyword != null) {
+			bArticle.setKeyId(keyId);
+			bArticle.setKeyValue(bKeyword.getValue());
+		}
+		bArticle.setContentId(content.getId());
+		bArticle.setTop("");
+		bArticle.setCreateTime(new Date());
+		return bArticleDao.insert(bArticle);
 	}
 }

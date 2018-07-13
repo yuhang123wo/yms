@@ -5,23 +5,26 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div  th:fragment="header">
 	<header class="header">
 		<nav class="navbar navbar-default" id="navbar">
 			<div class="container">
 				<div class="header-topbar hidden-xs link-border">
 					<ul class="site-nav topmenu">
 						<li><a href="#" rel="nofollow">友情链接</a></li>
-						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false" rel="nofollow">关注本站 <span class="caret"></span></a>
-							<ul class="dropdown-menu header-topbar-dropdown-menu">
-								<li><a data-toggle="modal" data-target="#WeChat"
-									rel="nofollow"><i class="fa fa-weixin"></i> 微信</a></li>
-								<li><a href="#" rel="nofollow"><i class="fa fa-weibo"></i>
-										微博</a></li>
-								<li><a data-toggle="modal" data-target="#areDeveloping"
-									rel="nofollow"><i class="fa fa-rss"></i> RSS</a></li>
-							</ul></li>
+						<shiro:user>
+							<li class="dropdown"><a class="dropdown-toggle"
+								data-toggle="dropdown" role="button" aria-haspopup="true"
+								aria-expanded="false" rel="nofollow">我的论坛 <span
+									class="caret"></span>
+							</a>
+								<ul class="dropdown-menu header-topbar-dropdown-menu">
+									<li><a href="/wode/index"><i class="fa fa-weixin"></i> 博客</a></li>
+									<li><a href="/wode/index"><i class="fa fa-weibo"></i>消息</a></li>
+									<li><a href="/wode/index"><i class="fa fa-rss"></i> 设置</a></li>
+									<li><a href="/wode/index"></i> 退出</a></li>
+								</ul></li>
+						</shiro:user>
 					</ul>
 					<shiro:guest>
 						<a data-toggle="modal" data-target="#loginModal" class="login"
@@ -69,5 +72,56 @@
 			</div>
 		</nav>
 	</header>
+
+	<!--登录注册模态框-->
+	<div class="modal fade user-select" id="loginModal" tabindex="-1"
+		role="dialog" aria-labelledby="loginModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form action="/Admin/Index/login" method="post">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="loginModalLabel">登录</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="loginModalUserNmae">用户名</label> <input type="text"
+								class="form-control" id="loginModalUserNmae"
+								placeholder="请输入用户名" autofocus maxlength="15" autocomplete="off"
+								required>
+						</div>
+						<div class="form-group">
+							<label for="loginModalUserPwd">密码</label> <input type="password"
+								class="form-control" id="loginModalUserPwd" placeholder="请输入密码"
+								maxlength="18" autocomplete="off" required>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary" onclick="login()">登录</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	 <script type="text/javascript">
+	 function login(){
+			$.ajax({
+					type : "POST",
+					url : '/login',
+					data : {username:$("#loginModalUserNmae").val(),password:$("#loginModalUserPwd").val()},
+					dataType : 'json',
+					success : function(data) {
+						if(data.code==0){
+							window.location.reload();
+						}
+					}
+				});
+		}
+	 </script>
+	</div>
 </body>
 </html>

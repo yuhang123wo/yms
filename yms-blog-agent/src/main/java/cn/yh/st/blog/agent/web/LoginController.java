@@ -8,6 +8,8 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,7 +27,7 @@ public class LoginController {
 	 * @param model
 	 * @return String
 	 */
-	@RequestMapping("login")
+	@PostMapping("login")
 	@ResponseBody
 	public ResultMsg login(HttpServletRequest request) {
 		String username = ServletRequestUtils.getStringParameter(request, "username", "");
@@ -41,7 +43,7 @@ public class LoginController {
 			try {
 				UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken(username,
 						password.toCharArray(), "");
-			/*	token.setRememberMe(true);*/
+				/* token.setRememberMe(true); */
 				subject.login(token);
 				return ResultMsg.success();
 			} catch (UserNotExistException e) {
@@ -57,6 +59,11 @@ public class LoginController {
 
 		}
 		return ResultMsg.success();
+	}
+
+	@GetMapping("login")
+	public String login() {
+		return "redirect:/index";
 	}
 
 	/**

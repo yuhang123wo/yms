@@ -37,7 +37,14 @@
 			<value>
 				/login = authc
 				/loginOut=logout
-				/** = anon
+				/css/**=anon
+				/fonts/**=anon
+				/images/**=anon
+				/js/**=anon
+				/kindeditor/**=anon
+				/article/**=anon
+				/index =anon
+				/** = authc
 			</value>
 		</property>
 	</bean>
